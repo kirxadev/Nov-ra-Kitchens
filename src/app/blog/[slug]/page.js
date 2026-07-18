@@ -13,7 +13,7 @@ export async function generateMetadata({ params }) {
   const article = journalArticles.find((a) => a.slug === slug);
   if (!article) return { title: "Article Not Found" };
   return {
-    title: `${article.title} | Nova Journal`,
+    title: `${article.title} | Novèra Journal`,
     description: article.shortDescription,
     openGraph: {
       title: article.title,

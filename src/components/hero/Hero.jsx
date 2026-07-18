@@ -294,7 +294,7 @@ export function Hero() {
                 </span>
                 
                 {/* SEO: Changed to h2 since the hidden h1 handles the main page title */}
-                <h2 className="font-heading text-[42px] sm:text-6xl lg:text-7xl xl:text-[80px] leading-[1.05] font-medium tracking-tight text-white overflow-hidden pb-1 sm:pb-2">
+                <h2 className="font-heading text-[42px] sm:text-6xl lg:text-7xl xl:text-[80px] leading-[1.35] sm:leading-[1.1] font-medium tracking-tight text-white overflow-hidden pb-2">
                   <span className="heading-text block" style={{ willChange: "transform" }}>
                     {slide.heading}
                   </span>

@@ -93,7 +93,7 @@ export function DifferenceSection() {
     <section 
       ref={sectionRef}
       className="w-full bg-[#FBF8F4] py-24 sm:py-32 overflow-hidden"
-      aria-label="The Nova Difference"
+      aria-label="The Novèra Difference"
     >
       <div className="mx-auto max-w-[1440px] px-6 sm:px-8">
         
@@ -103,7 +103,7 @@ export function DifferenceSection() {
           className="mx-auto max-w-[720px] text-center mb-16 sm:mb-24 flex flex-col items-center"
         >
           <span className="mb-4 sm:mb-6 block font-sans text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-[#C46A3C]">
-            Why Choose Nova
+            Why Choose Novèra
           </span>
           <h2 className="mb-6 font-heading text-4xl sm:text-5xl lg:text-6xl font-medium leading-[1.1] text-heading">
             Craftsmanship Built Into Every Detail

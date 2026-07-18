@@ -73,7 +73,7 @@ export function Footer() {
   return (
     <footer 
       ref={footerRef}
-      className="relative w-full bg-[#FBF8F4] pt-24 sm:pt-32 pb-8 overflow-hidden"
+      className="relative w-full bg-[#FBF8F4] pt-12 sm:pt-32 pb-8 overflow-hidden"
     >
       {/* Subtle Texture */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/cubes.png")' }} />

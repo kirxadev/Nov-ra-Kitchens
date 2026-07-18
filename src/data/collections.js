@@ -25,26 +25,26 @@ export const collections = [
   },
   {
     id: 4,
-    title: "Pantry & Storage",
-    label: "Storage",
-    description: "Intelligent organization wrapped in warm wood textures and premium lighting.",
-    image: "/images/hero/pantry.png",
-    href: "/collections/pantry"
-  },
-  {
-    id: 5,
     title: "Bar & Wine Rooms",
     label: "Hosting",
     description: "Seamless architectural integration for the ultimate hosting and wine tasting experience.",
-    image: "/images/collections/kitchen.png",
+    image: "/images/hero/pantry.png",
     href: "/collections/bar-wine"
   },
   {
+    id: 5,
+    title: "Classic Kitchens",
+    label: "Classic",
+    description: "Timeless wooden aesthetics blending traditional warmth with modern culinary functionality.",
+    image: "/images/collections/kitchen.png",
+    href: "/collections/classic"
+  },
+  {
     id: 6,
-    title: "Utility Spaces",
-    label: "Utility",
-    description: "Premium configurations extending luxury craftsmanship to every corner of your home.",
-    image: "/images/hero/white.png",
-    href: "/collections/utility"
+    title: "Pantry & Storage",
+    label: "Storage",
+    description: "Intelligent organization wrapped in warm wood textures and premium lighting.",
+    image: "/images/hero/storage.png",
+    href: "/collections/pantry"
   }
 ];

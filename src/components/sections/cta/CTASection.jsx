@@ -34,19 +34,6 @@ export function CTASection() {
           start: "top 80%",
         }
       });
-      
-      // Trust Pills Reveal
-      gsap.from(pillsRef.current.children, {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: pillsRef.current,
-          start: "top 90%",
-        }
-      });
 
       // Quick Info Reveal
       gsap.from(infoRef.current.children, {
@@ -80,7 +67,7 @@ export function CTASection() {
   return (
     <section 
       ref={sectionRef}
-      className="relative w-full bg-[#F5EBE1] py-32 sm:py-40 lg:py-48 overflow-hidden"
+      className="relative w-full bg-[#F5EBE1] py-10 sm:py-32 lg:py-48 overflow-hidden"
       aria-label="Start Your Journey"
     >
       {/* Premium Background Architecture */}
@@ -132,7 +119,7 @@ export function CTASection() {
         </div>
 
         {/* Contact Quick Info */}
-        <div ref={infoRef} className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 mb-20 border-t border-b border-heading/10 py-8 w-full max-w-3xl">
+        <div ref={infoRef} className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 mb-6 sm:mb-20 border-t border-b border-heading/10 py-6 sm:py-8 w-full max-w-3xl">
           <div className="flex items-center space-x-3 text-heading">
             <Phone className="w-4 h-4 text-[#C46A3C]" />
             <span className="font-sans text-sm font-medium">+91 XXX XXX XXXX</span>

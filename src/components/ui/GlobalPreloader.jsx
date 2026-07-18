@@ -80,7 +80,7 @@ export function GlobalPreloader() {
       <div className="flex flex-col items-center">
         <h2 
           ref={textRef} 
-          className="font-heading text-3xl sm:text-5xl font-medium tracking-[0.2em] mb-6 text-white"
+          className="font-heading text-2xl sm:text-5xl font-medium tracking-[0.15em] sm:tracking-[0.2em] mb-6 text-white text-center"
         >
           NOVÈRA KITCHENS
         </h2>

@@ -20,7 +20,7 @@ export const clientStories = [
     project: "The Horizon Villa",
     projectType: "Open-Concept Culinary Space",
     overview: "A seamless integration of indoor and outdoor living, featuring a massive monolithic island and concealed storage systems.",
-    quote: "We wanted a kitchen that felt like an extension of our architecture. Nova delivered exactly that. The flush integration of appliances and the sheer quality of the stone is breathtaking.",
+    quote: "We wanted a kitchen that felt like an extension of our architecture. Novèra delivered exactly that. The flush integration of appliances and the sheer quality of the stone is breathtaking.",
     client: "James & Sarah Chen",
     completed: "2025",
     highlights: [
@@ -33,7 +33,7 @@ export const clientStories = [
   },
   {
     id: 3,
-    project: "Casa Nova",
+    project: "Casa Novèra",
     projectType: "Minimalist Kitchen & Pantry",
     overview: "An ultra-minimalist execution relying on pure geometry and absolute precision to hide all functional elements from view.",
     quote: "The design process was incredibly collaborative. The team understood our desire for absolute minimalism without sacrificing usability. The hidden pantry is an absolute game-changer.",
@@ -52,7 +52,7 @@ export const clientStories = [
     project: "Urban Loft",
     projectType: "Compact Luxury Kitchen",
     overview: "Maximizing utility in an urban footprint through intelligent vertical storage and integrated European hardware.",
-    quote: "Living in the city meant we had limited space, but we didn't want to compromise on luxury. Nova engineered solutions that gave us double the storage we thought was possible.",
+    quote: "Living in the city meant we had limited space, but we didn't want to compromise on luxury. Novèra engineered solutions that gave us double the storage we thought was possible.",
     client: "Michael Rossi",
     completed: "2025",
     highlights: [

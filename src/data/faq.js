@@ -22,7 +22,7 @@ export const faqQuestions = [
   {
     id: 5,
     question: "Do you provide installation services?",
-    answer: "Yes, professional installation is an integral part of the Nova experience. Our dedicated, factory-trained installation teams manage the entire process, ensuring absolute precision, perfect alignment, and a pristine white-glove handover."
+    answer: "Yes, professional installation is an integral part of the Novèra experience. Our dedicated, factory-trained installation teams manage the entire process, ensuring absolute precision, perfect alignment, and a pristine white-glove handover."
   },
   {
     id: 6,

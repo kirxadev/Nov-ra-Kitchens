@@ -59,7 +59,7 @@ export const designProcess = [
     number: "06",
     stage: "Aftercare & Support",
     summary: "Long-term service and ongoing customer support.",
-    description: "The Nova experience extends far beyond the final installation day. We provide a comprehensive handover, detailing the care protocols for your premium materials, and offer an industry-leading lifetime support program to protect your architectural investment.",
+    description: "The Novèra experience extends far beyond the final installation day. We provide a comprehensive handover, detailing the care protocols for your premium materials, and offer an industry-leading lifetime support program to protect your architectural investment.",
     duration: "Lifetime",
     deliverables: "Care Guide, Warranty Certificate, Handover Walkthrough",
     features: ["Dedicated Support Team", "Annual Check-ups", "Lifetime Guarantee"],

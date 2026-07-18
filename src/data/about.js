@@ -9,13 +9,13 @@ export const aboutData = {
     {
       year: "1998",
       title: "The Foundation",
-      description: "Nova was established in a small woodworking studio with a singular vision: to bring European architectural precision to bespoke domestic kitchen design.",
+      description: "Novèra was established in a small woodworking studio with a singular vision: to bring European architectural precision to bespoke domestic kitchen design.",
       image: "/images/process/process_manufacturing_1784363051208.png"
     },
     {
       year: "2005",
       title: "Material Innovation",
-      description: "We pioneered the integration of ultra-matte lacquers and raw natural stone, defining the signature minimalist aesthetic that Nova is known for today.",
+      description: "We pioneered the integration of ultra-matte lacquers and raw natural stone, defining the signature minimalist aesthetic that Novèra is known for today.",
       image: "/images/materials/material_marble_1784361227712.png"
     },
     {
