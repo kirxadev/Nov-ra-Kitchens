@@ -1,19 +1,17 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 export function BlogList({ articles }) {
   const listRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
+  useGSAPEffect(() => {
     if (!articles || articles.length === 0) return;
-
-    let ctx = gsap.context(() => {
       gsap.from(listRef.current.children, {
         y: 40, opacity: 0, duration: 1, stagger: 0.1, ease: "power3.out",
         scrollTrigger: { 
@@ -21,10 +19,7 @@ export function BlogList({ articles }) {
           start: "top 85%" 
         }
       });
-    }, listRef);
-
-    return () => ctx.revert();
-  }, [articles]);
+    }, listRef, [articles]);
 
   if (!articles || articles.length === 0) {
     return (

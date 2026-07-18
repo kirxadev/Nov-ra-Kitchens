@@ -1,11 +1,12 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function ConfigurationOptions({ collection }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -17,9 +18,7 @@ export function ConfigurationOptions({ collection }) {
 
   const { configurations } = collection;
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
+  useGSAPEffect(() => {
       gsap.from(headerRef.current.children, {
         y: 40, opacity: 0, duration: 1, stagger: 0.15, ease: "power3.out",
         scrollTrigger: { trigger: headerRef.current, start: "top 85%" }
@@ -29,9 +28,7 @@ export function ConfigurationOptions({ collection }) {
         y: 60, opacity: 0, duration: 1.2, ease: "power3.out",
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%" }
       });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+    }, sectionRef, []);
 
   // Handle crossfade on tab change
   useEffect(() => {

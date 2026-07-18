@@ -1,11 +1,12 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function Footer() {
   const footerRef = useRef(null);
@@ -14,61 +15,56 @@ export function Footer() {
   const newsletterRef = useRef(null);
   const bottomRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
-      // Top Section Reveal
-      gsap.from(topRef.current.children, {
-        y: 30,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: topRef.current,
-          start: "top 90%",
-        }
-      });
-      
-      // Columns Stagger
-      gsap.from(columnsRef.current.children, {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: columnsRef.current,
-          start: "top 85%",
-        }
-      });
+  useGSAPEffect(() => {
+    // Top Section Reveal
+    gsap.from(topRef.current.children, {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: topRef.current,
+        start: "top 90%",
+      }
+    });
+    
+    // Columns Stagger
+    gsap.from(columnsRef.current.children, {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: columnsRef.current,
+        start: "top 85%",
+      }
+    });
 
-      // Newsletter Reveal
-      gsap.from(newsletterRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: newsletterRef.current,
-          start: "top 90%",
-        }
-      });
+    // Newsletter Reveal
+    gsap.from(newsletterRef.current, {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: newsletterRef.current,
+        start: "top 90%",
+      }
+    });
 
-      // Bottom Bar Reveal
-      gsap.from(bottomRef.current, {
-        opacity: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: bottomRef.current,
-          start: "top 95%",
-        }
-      });
-    }, footerRef);
-
-    return () => ctx.revert();
-  }, []);
+    // Bottom Bar Reveal
+    gsap.from(bottomRef.current, {
+      opacity: 0,
+      duration: 1.5,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: bottomRef.current,
+        start: "top 95%",
+      }
+    });
+  }, footerRef, []);
 
   return (
     <footer 

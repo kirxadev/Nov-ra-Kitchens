@@ -1,12 +1,13 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { Quote } from "lucide-react";
 import { clientStories, socialProofStats } from "@/data/testimonials";
 import { cn } from "@/lib/utils";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function TestimonialSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -22,76 +23,67 @@ export function TestimonialSection() {
   const contentRef = useRef(null);
 
   // Initial Scroll Reveal
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
-      // Header Reveal
-      gsap.from(headerRef.current.children, {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 85%",
-        }
-      });
-      
-      // Layout Reveal
-      gsap.from([storyContainerRef.current, selectorRef.current], {
-        y: 60,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        }
-      });
+  useGSAPEffect(() => {
+    // Header Reveal
+    gsap.from(headerRef.current.children, {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: headerRef.current,
+        start: "top 85%",
+      }
+    });
+    
+    // Layout Reveal
+    gsap.from([storyContainerRef.current, selectorRef.current], {
+      y: 60,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 75%",
+      }
+    });
 
-      // Stats Reveal
-      gsap.from(statsRef.current.children, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: statsRef.current,
-          start: "top 90%",
-        }
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+    // Stats Reveal
+    gsap.from(statsRef.current.children, {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: statsRef.current,
+        start: "top 90%",
+      }
+    });
+  }, sectionRef, []);
 
   // State Change Animations
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      const tl = gsap.timeline();
-      
-      // Image Crossfade
-      tl.fromTo(imageRef.current,
-        { opacity: 0.5, scale: 1.02 },
-        { opacity: 1, scale: 1, duration: 1, ease: "power2.out", overwrite: true },
-        0
+  useGSAPEffect(() => {
+    const tl = gsap.timeline();
+    
+    // Image Crossfade
+    tl.fromTo(imageRef.current,
+      { opacity: 0.5, scale: 1.02 },
+      { opacity: 1, scale: 1, duration: 1, ease: "power2.out", overwrite: true },
+      0
+    );
+    
+    // Text Reveal
+    if (contentRef.current) {
+      tl.fromTo(contentRef.current.children,
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.05, ease: "power3.out" },
+        0.1
       );
-      
-      // Text Reveal
-      if (contentRef.current) {
-        tl.fromTo(contentRef.current.children,
-          { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.6, stagger: 0.05, ease: "power3.out" },
-          0.1
-        );
-      }
-    }, storyContainerRef);
-
-    return () => ctx.revert();
-  }, [activeIndex]);
+    }
+  }, storyContainerRef, [activeIndex]);
 
   return (
     <section 

@@ -1,27 +1,24 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 export function RelatedProjects({ collection }) {
   const sectionRef = useRef(null);
   const gridRef = useRef(null);
 
   const { relatedProjects } = collection;
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
+  useGSAPEffect(() => {
       gsap.from(gridRef.current.children, {
         y: 60, opacity: 0, duration: 1, stagger: 0.15, ease: "power3.out",
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%" }
       });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+    }, sectionRef, []);
 
   if (!relatedProjects || relatedProjects.length === 0) return null;
 

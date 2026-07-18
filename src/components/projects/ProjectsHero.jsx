@@ -1,22 +1,20 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
+import { useGSAPEffect } from "@/hooks/useGSAP";
+
 export function ProjectsHero() {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
-      gsap.from(textRef.current.children, {
-        y: 40, opacity: 0, duration: 1.2, stagger: 0.15, ease: "power3.out",
-        delay: 0.2
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+  useGSAPEffect(() => {
+    gsap.from(textRef.current.children, {
+      y: 40, opacity: 0, duration: 1.2, stagger: 0.15, ease: "power3.out",
+      delay: 0.2
+    });
+  }, sectionRef, []);
 
   return (
     <section ref={sectionRef} className="w-full bg-[#FBF8F4] pt-40 pb-20 sm:pt-48 sm:pb-24">

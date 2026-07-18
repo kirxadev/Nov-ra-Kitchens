@@ -1,17 +1,16 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { aboutData } from "@/data/about";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function Philosophy() {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
+  useGSAPEffect(() => {
       // Split text roughly by sentences or words to reveal them
       const words = textRef.current.children;
       
@@ -27,10 +26,7 @@ export function Philosophy() {
           scrub: true,
         }
       });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+    }, sectionRef, []);
 
   // Simple split by word for the scrub reveal effect
   const words = aboutData.philosophy.statement.split(" ");

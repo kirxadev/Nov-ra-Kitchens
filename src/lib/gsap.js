@@ -18,4 +18,14 @@ export function registerGSAP() {
   }
 }
 
+/**
+ * Kill all active ScrollTrigger instances and GSAP tweens.
+ * Called by GSAPProvider on unmount (Fast Refresh) to prevent
+ * stale animations from conflicting with newly mounted components.
+ */
+export function cleanupAllScrollTriggers() {
+  ScrollTrigger.getAll().forEach((st) => st.kill());
+  gsap.killTweensOf("*");
+}
+
 export { gsap, ScrollTrigger };

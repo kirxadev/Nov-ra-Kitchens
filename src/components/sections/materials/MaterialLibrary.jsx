@@ -1,12 +1,13 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { Star, CheckCircle2 } from "lucide-react";
 import { materials } from "@/data/materials";
 import { cn } from "@/lib/utils";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function MaterialLibrary() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -19,59 +20,51 @@ export function MaterialLibrary() {
   const contentRef = useRef(null);
 
   // Initial Entry Animation
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
-      gsap.from(headerRef.current.children, {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 85%",
-        }
-      });
-      
-      gsap.from(displayRef.current, {
-        opacity: 0,
-        y: 40,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: displayRef.current,
-          start: "top 80%",
-        }
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+  useGSAPEffect(() => {
+    gsap.from(headerRef.current.children, {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: headerRef.current,
+        start: "top 85%",
+      }
+    });
+    
+    gsap.from(displayRef.current, {
+      opacity: 0,
+      y: 40,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: displayRef.current,
+        start: "top 80%",
+      }
+    });
+  }, sectionRef, []);
 
   // State Change Animation
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      const tl = gsap.timeline();
-      
-      // Image Crossfade & Scale
-      tl.fromTo(imageRef.current,
-        { opacity: 0.2, scale: 1.1 },
-        { opacity: 1, scale: 1, duration: 1.5, ease: "power2.out" },
-        0
-      );
-      
-      // Details Text Reveal
-      if (contentRef.current) {
-        tl.fromTo(contentRef.current.children,
-          { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.8, stagger: 0.05, ease: "power3.out" },
-          0.1
-        );
-      }
-    }, displayRef);
+  useGSAPEffect(() => {
+    const tl = gsap.timeline();
     
-    return () => ctx.revert();
-  }, [activeIndex]);
+    // Image Crossfade & Scale
+    tl.fromTo(imageRef.current,
+      { opacity: 0.2, scale: 1.1 },
+      { opacity: 1, scale: 1, duration: 1.5, ease: "power2.out" },
+      0
+    );
+    
+    // Details Text Reveal
+    if (contentRef.current) {
+      tl.fromTo(contentRef.current.children,
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.8, stagger: 0.05, ease: "power3.out" },
+        0.1
+      );
+    }
+  }, displayRef, [activeIndex]);
 
   // Durability Stars Render
   const renderStars = (rating) => {

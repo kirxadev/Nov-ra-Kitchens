@@ -1,17 +1,16 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 export function ArticleHero({ article }) {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
   const imageRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
+  useGSAPEffect(() => {
       // Reveal Text
       gsap.from(textRef.current.children, {
         y: 40, opacity: 0, duration: 1.2, stagger: 0.15, ease: "power3.out", delay: 0.2
@@ -22,10 +21,7 @@ export function ArticleHero({ article }) {
         { scale: 1.05, opacity: 0 },
         { scale: 1, opacity: 1, duration: 1.5, ease: "power2.out", delay: 0.4 }
       );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  }, sectionRef, []);
 
   return (
     <section ref={sectionRef} className="w-full bg-[#FBF8F4] pt-40 pb-16 sm:pt-48 sm:pb-24">

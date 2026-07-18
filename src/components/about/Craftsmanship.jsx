@@ -1,70 +1,60 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import { aboutData } from "@/data/about";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function Craftsmanship() {
   const sectionRef = useRef(null);
   const containerRef = useRef(null);
   const trackRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
+  useGSAPEffect(() => {
     // Only apply horizontal scroll on desktop
     const matchMedia = gsap.matchMedia();
 
     matchMedia.add("(min-width: 1024px)", () => {
-      let ctx = gsap.context(() => {
-        // Calculate the total width to scroll based on the track's scrollWidth minus the viewport width
-        const getScrollAmount = () => {
-          let trackWidth = trackRef.current.scrollWidth;
-          return -(trackWidth - window.innerWidth);
-        };
+      const getScrollAmount = () => {
+        let trackWidth = trackRef.current.scrollWidth;
+        return -(trackWidth - window.innerWidth);
+      };
 
-        const tween = gsap.to(trackRef.current, {
-          x: getScrollAmount,
-          ease: "none"
-        });
+      const tween = gsap.to(trackRef.current, {
+        x: getScrollAmount,
+        ease: "none"
+      });
 
-        ScrollTrigger.create({
-          trigger: containerRef.current,
-          start: "top top",
-          end: () => `+=${getScrollAmount() * -1}`,
-          pin: true,
-          animation: tween,
-          scrub: 1,
-          invalidateOnRefresh: true
-        });
-
-      }, sectionRef);
-
-      return () => ctx.revert();
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top top",
+        end: () => `+=${getScrollAmount() * -1}`,
+        pin: true,
+        animation: tween,
+        scrub: 1,
+        invalidateOnRefresh: true
+      });
     });
 
     // Simple fade in for mobile (stacked layout)
     matchMedia.add("(max-width: 1023px)", () => {
-      let ctx = gsap.context(() => {
-        gsap.from(trackRef.current.children, {
-          y: 40,
-          opacity: 0,
-          duration: 1,
-          stagger: 0.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-          }
-        });
-      }, sectionRef);
-
-      return () => ctx.revert();
+      gsap.from(trackRef.current.children, {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        }
+      });
     });
 
     return () => matchMedia.revert();
-  }, []);
+  }, sectionRef, []);
 
   return (
     <section 

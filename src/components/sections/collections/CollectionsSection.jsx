@@ -1,54 +1,46 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { collections } from "@/data/collections";
 import { CollectionCard } from "@/components/cards/CollectionCard";
-
-// Register ScrollTrigger for scroll-based animations
-
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function CollectionsSection() {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
   const cardsContainerRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    // Clean up function context
-    let ctx = gsap.context(() => {
-      // 1. Header Reveal Animation
-      gsap.from(headerRef.current.children, {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 85%", // Triggers when the top of header hits 85% of viewport
-        },
-      });
+  useGSAPEffect(() => {
+    // 1. Header Reveal Animation
+    gsap.from(headerRef.current.children, {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: headerRef.current,
+        start: "top 85%",
+      },
+    });
 
-      // 2. Cards Staggered Reveal
-      const cards = gsap.utils.toArray(".collection-card-wrapper");
-      
-      gsap.from(cards, {
-        y: 60,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.1, // Smooth sequence
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: cardsContainerRef.current,
-          start: "top 80%",
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+    // 2. Cards Staggered Reveal
+    const cards = gsap.utils.toArray(".collection-card-wrapper");
+    
+    gsap.from(cards, {
+      y: 60,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: cardsContainerRef.current,
+        start: "top 80%",
+      },
+    });
+  }, sectionRef, []);
 
   return (
     <section 

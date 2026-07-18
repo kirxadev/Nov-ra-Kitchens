@@ -1,19 +1,17 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 export function ProjectGrid({ projects }) {
   const gridRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
+  useGSAPEffect(() => {
     if (!projects || projects.length === 0) return;
-
-    let ctx = gsap.context(() => {
       // Create a staggered reveal for all cards currently in the DOM
       gsap.from(gridRef.current.children, {
         y: 60, opacity: 0, duration: 1, stagger: 0.1, ease: "power3.out",
@@ -22,10 +20,7 @@ export function ProjectGrid({ projects }) {
           start: "top 85%",
         }
       });
-    }, gridRef);
-
-    return () => ctx.revert();
-  }, [projects]); // Re-run when projects array changes (e.g., from filtering)
+    }, gridRef, [projects]); // Re-run when projects array changes (e.g., from filtering)
 
   if (!projects || projects.length === 0) {
     return (

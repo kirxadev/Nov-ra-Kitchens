@@ -1,21 +1,19 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import gsap from "gsap";
+import React, { useRef } from "react";
+import { gsap } from "@/lib/gsap";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function ContactHero() {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
 
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      gsap.from(textRef.current.children, {
-        y: 40, opacity: 0, duration: 1.2, stagger: 0.15, ease: "power3.out",
-        delay: 0.2
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+  useGSAPEffect(() => {
+    gsap.from(textRef.current.children, {
+      y: 40, opacity: 0, duration: 1.2, stagger: 0.15, ease: "power3.out",
+      delay: 0.2
+    });
+  }, sectionRef, []);
 
   return (
     <section ref={sectionRef} className="w-full bg-[#1F1F1F] pt-40 pb-20 sm:pt-48 sm:pb-24 overflow-hidden">

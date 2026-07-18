@@ -1,10 +1,11 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { MoveHorizontal } from "lucide-react";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function BeforeAfter({ project }) {
   const sectionRef = useRef(null);
@@ -13,16 +14,12 @@ export function BeforeAfter({ project }) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
+  useGSAPEffect(() => {
       gsap.from(sliderRef.current, {
         y: 40, opacity: 0, duration: 1, ease: "power3.out",
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%" }
       });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+    }, sectionRef, []);
 
   const handleMove = (e) => {
     if (!isDragging || !sliderRef.current) return;

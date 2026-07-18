@@ -1,35 +1,32 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Quote } from "lucide-react";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 export function FeaturedCaseStudy({ project }) {
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
   const imageRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
+  useGSAPEffect(() => {
     if (!project) return;
     
-    let ctx = gsap.context(() => {
-      gsap.from(contentRef.current.children, {
-        y: 40, opacity: 0, duration: 1, stagger: 0.15, ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 75%" }
-      });
-      
-      gsap.fromTo(imageRef.current, 
-        { scale: 1.05, opacity: 0.5 },
-        { scale: 1, opacity: 1, duration: 1.5, ease: "power2.out",
-          scrollTrigger: { trigger: sectionRef.current, start: "top 80%" }
-        }
-      );
-    }, sectionRef);
-    return () => ctx.revert();
-  }, [project]);
+    gsap.from(contentRef.current.children, {
+      y: 40, opacity: 0, duration: 1, stagger: 0.15, ease: "power3.out",
+      scrollTrigger: { trigger: sectionRef.current, start: "top 75%" }
+    });
+    
+    gsap.fromTo(imageRef.current, 
+      { scale: 1.05, opacity: 0.5 },
+      { scale: 1, opacity: 1, duration: 1.5, ease: "power2.out",
+        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" }
+      }
+    );
+  }, sectionRef, [project]);
 
   if (!project) return null;
 
