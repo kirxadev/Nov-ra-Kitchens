@@ -1,13 +1,14 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Clock } from "lucide-react";
 import { journalArticles } from "@/data/journal";
 import { cn } from "@/lib/utils";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function JournalSection() {
   const sectionRef = useRef(null);
@@ -18,59 +19,54 @@ export function JournalSection() {
   const featuredArticle = journalArticles[0];
   const sideArticles = journalArticles.slice(1, 5); // Display next 4 articles
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
-      // Header Reveal
-      gsap.fromTo(headerRef.current.children, 
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-          }
+  useGSAPEffect(() => {
+    // Header Reveal
+    gsap.fromTo(headerRef.current.children, 
+      { y: 40, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: "top 85%",
         }
-      );
-      
-      // Featured Article Reveal
-      gsap.fromTo(featuredRef.current, 
-        { y: 60, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-          }
+      }
+    );
+    
+    // Featured Article Reveal
+    gsap.fromTo(featuredRef.current, 
+      { y: 60, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
         }
-      );
-      
-      // Side Articles Stagger Reveal
-      gsap.fromTo(sideListRef.current.children, 
-        { x: 40, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sideListRef.current,
-            start: "top 85%",
-          }
+      }
+    );
+    
+    // Side Articles Stagger Reveal
+    gsap.fromTo(sideListRef.current.children, 
+      { x: 40, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sideListRef.current,
+          start: "top 85%",
         }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+      }
+    );
+  }, sectionRef, []);
 
   return (
     <section 

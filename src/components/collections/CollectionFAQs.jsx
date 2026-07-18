@@ -1,10 +1,11 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function CollectionFAQs({ collection }) {
   const [openIndex, setOpenIndex] = useState(0);
@@ -12,16 +13,12 @@ export function CollectionFAQs({ collection }) {
 
   const { faqs } = collection;
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
+  useGSAPEffect(() => {
       gsap.from(sectionRef.current.children, {
         y: 40, opacity: 0, duration: 1, stagger: 0.1, ease: "power3.out",
         scrollTrigger: { trigger: sectionRef.current, start: "top 80%" }
       });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+    }, sectionRef, []);
 
   if (!faqs || faqs.length === 0) return null;
 

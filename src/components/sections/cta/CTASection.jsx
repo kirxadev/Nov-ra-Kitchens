@@ -1,10 +1,12 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, Phone, Mail, Clock } from "lucide-react";
+import { useGSAPEffect } from "@/hooks/useGSAP";
+
 const trustPills = [
   "Free Design Consultation",
   "Custom 3D Visualization",
@@ -19,50 +21,45 @@ export function CTASection() {
   const infoRef = useRef(null);
   const pillsRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
-      // Content Stagger Reveal
-      gsap.from(contentRef.current.children, {
-        y: 40,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-        }
-      });
+  useGSAPEffect(() => {
+    // Content Stagger Reveal
+    gsap.from(contentRef.current.children, {
+      y: 40,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 80%",
+      }
+    });
 
-      // Quick Info Reveal
-      gsap.from(infoRef.current.children, {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: infoRef.current,
-          start: "top 95%",
-        }
-      });
+    // Quick Info Reveal
+    gsap.from(infoRef.current.children, {
+      y: 20,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: infoRef.current,
+        start: "top 95%",
+      }
+    });
 
-      // Subtle Parallax on Background Illustration
-      gsap.to(illustrationRef.current, {
-        y: 100,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        }
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+    // Subtle Parallax on Background Illustration
+    gsap.to(illustrationRef.current, {
+      y: 100,
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      }
+    });
+  }, sectionRef, []);
 
   return (
     <section 

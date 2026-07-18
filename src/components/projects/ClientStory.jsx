@@ -1,23 +1,20 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { Quote } from "lucide-react";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 export function ClientStory({ project }) {
   const sectionRef = useRef(null);
   const quoteRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
+  useGSAPEffect(() => {
       gsap.from(quoteRef.current, {
         y: 40, opacity: 0, duration: 1.2, ease: "power3.out",
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%" }
       });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+    }, sectionRef, []);
 
   if (!project.caseStudy.testimonial) return null;
 

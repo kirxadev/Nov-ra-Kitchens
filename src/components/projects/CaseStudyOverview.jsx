@@ -1,16 +1,15 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 export function CaseStudyOverview({ project }) {
   const sectionRef = useRef(null);
   const leftRef = useRef(null);
   const rightRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
+  useGSAPEffect(() => {
       gsap.from(leftRef.current.children, {
         y: 40, opacity: 0, duration: 1, stagger: 0.15, ease: "power3.out",
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%" }
@@ -19,9 +18,7 @@ export function CaseStudyOverview({ project }) {
         y: 40, opacity: 0, duration: 1, stagger: 0.15, ease: "power3.out", delay: 0.2,
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%" }
       });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+    }, sectionRef, []);
 
   return (
     <section ref={sectionRef} className="w-full bg-white py-24 sm:py-32">

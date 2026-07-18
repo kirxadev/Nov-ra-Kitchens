@@ -1,13 +1,14 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Check, Phone } from "lucide-react";
 import { faqQuestions } from "@/data/faq";
 import { cn } from "@/lib/utils";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState(0); // First question open by default
@@ -17,38 +18,33 @@ export function FAQSection() {
   const leftPanelRef = useRef(null);
   const rightPanelRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
-      // Header Reveal
-      gsap.from(headerRef.current.children, {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 85%",
-        }
-      });
-      
-      // Panels Reveal
-      gsap.from([leftPanelRef.current, rightPanelRef.current], {
-        y: 60,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        }
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  useGSAPEffect(() => {
+    // Header Reveal
+    gsap.from(headerRef.current.children, {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: headerRef.current,
+        start: "top 85%",
+      }
+    });
+    
+    // Panels Reveal
+    gsap.from([leftPanelRef.current, rightPanelRef.current], {
+      y: 60,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 75%",
+      }
+    });
+  }, sectionRef, []);
 
   return (
     <section 

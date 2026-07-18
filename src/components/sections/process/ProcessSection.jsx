@@ -1,12 +1,13 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { Plus, Minus, CheckCircle2 } from "lucide-react";
 import { designProcess } from "@/data/process";
 import { cn } from "@/lib/utils";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function ProcessSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -20,62 +21,53 @@ export function ProcessSection() {
   const imageRef = useRef(null);
 
   // Initial Scroll Reveal
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
-      // Header Reveal
-      gsap.from(headerRef.current.children, {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 85%",
-        }
-      });
-      
-      // Image Reveal
-      gsap.from(imageContainerRef.current, {
-        x: -40,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        }
-      });
-      
-      // Accordion Reveal
-      gsap.from(accordionRef.current.children, {
-        x: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        }
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  useGSAPEffect(() => {
+    // Header Reveal
+    gsap.from(headerRef.current.children, {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: headerRef.current,
+        start: "top 85%",
+      }
+    });
+    
+    // Image Reveal
+    gsap.from(imageContainerRef.current, {
+      x: -40,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 75%",
+      }
+    });
+    
+    // Accordion Reveal
+    gsap.from(accordionRef.current.children, {
+      x: 40,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 75%",
+      }
+    });
+  }, sectionRef, []);
 
   // Image Crossfade on state change
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      gsap.fromTo(imageRef.current,
-        { opacity: 0.4, scale: 1.05 },
-        { opacity: 1, scale: 1, duration: 1.2, ease: "power2.out", overwrite: true }
-      );
-    }, imageContainerRef);
-
-    return () => ctx.revert();
-  }, [activeIndex]);
+  useGSAPEffect(() => {
+    gsap.fromTo(imageRef.current,
+      { opacity: 0.4, scale: 1.05 },
+      { opacity: 1, scale: 1, duration: 1.2, ease: "power2.out", overwrite: true }
+    );
+  }, imageContainerRef, [activeIndex]);
 
   return (
     <section 

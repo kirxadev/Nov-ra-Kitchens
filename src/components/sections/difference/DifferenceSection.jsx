@@ -1,12 +1,13 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { novaDifference, novaStats } from "@/data/difference";
 import { cn } from "@/lib/utils";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function DifferenceSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -21,73 +22,64 @@ export function DifferenceSection() {
   const expandedInfoRef = useRef(null);
 
   // Initial Scroll Reveal
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
-      // Header Reveal
-      gsap.from(headerRef.current.children, {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 85%",
-        }
-      });
-      
-      // Image & Content Reveal
-      gsap.from(imageContainerRef.current, {
-        x: -40,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        }
-      });
-      
-      gsap.from(contentContainerRef.current, {
-        x: 40,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        }
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  useGSAPEffect(() => {
+    // Header Reveal
+    gsap.from(headerRef.current.children, {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: headerRef.current,
+        start: "top 85%",
+      }
+    });
+    
+    // Image & Content Reveal
+    gsap.from(imageContainerRef.current, {
+      x: -40,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 75%",
+      }
+    });
+    
+    gsap.from(contentContainerRef.current, {
+      x: 40,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 75%",
+      }
+    });
+  }, sectionRef, []);
 
   // State Change Animations
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      const tl = gsap.timeline();
-      
-      // Image Crossfade
-      tl.fromTo(imageRef.current,
-        { opacity: 0.4, scale: 1.05 },
-        { opacity: 1, scale: 1, duration: 1.2, ease: "power2.out" },
-        0
+  useGSAPEffect(() => {
+    const tl = gsap.timeline();
+    
+    // Image Crossfade
+    tl.fromTo(imageRef.current,
+      { opacity: 0.4, scale: 1.05 },
+      { opacity: 1, scale: 1, duration: 1.2, ease: "power2.out" },
+      0
+    );
+    
+    // Expanded Text Reveal
+    if (expandedInfoRef.current) {
+      tl.fromTo(expandedInfoRef.current.children,
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power3.out" },
+        0.1
       );
-      
-      // Expanded Text Reveal
-      if (expandedInfoRef.current) {
-        tl.fromTo(expandedInfoRef.current.children,
-          { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power3.out" },
-          0.1
-        );
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [activeIndex]);
+    }
+  }, sectionRef, [activeIndex]);
 
   return (
     <section 

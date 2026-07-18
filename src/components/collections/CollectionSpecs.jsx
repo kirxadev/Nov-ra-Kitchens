@@ -1,16 +1,15 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 export function CollectionSpecs({ collection }) {
   const sectionRef = useRef(null);
   const leftRef = useRef(null);
   const rightRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
+  useGSAPEffect(() => {
       gsap.from([leftRef.current, rightRef.current], {
         y: 60,
         opacity: 0,
@@ -22,10 +21,7 @@ export function CollectionSpecs({ collection }) {
           start: "top 90%",
         }
       });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+    }, sectionRef, []);
 
   return (
     <section ref={sectionRef} className="w-full bg-[#FAFAF9] py-24 sm:py-32">

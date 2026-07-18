@@ -1,18 +1,17 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function CollectionGallery({ collection }) {
   const sectionRef = useRef(null);
   const galleryRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
+  useGSAPEffect(() => {
       const images = galleryRef.current.querySelectorAll(".gallery-img-container");
       
       gsap.from(images, {
@@ -26,10 +25,7 @@ export function CollectionGallery({ collection }) {
           start: "top 75%",
         }
       });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+    }, sectionRef, []);
 
   const { gallery } = collection;
   if (!gallery || gallery.length === 0) return null;

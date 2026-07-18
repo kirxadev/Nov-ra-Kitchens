@@ -1,47 +1,43 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { projects } from "@/data/projects";
 import { CoverflowCarousel } from "./CoverflowCarousel";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function ProjectsSection() {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
   const carouselRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
-      // Header Reveal
-      gsap.from(headerRef.current.children, {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 85%",
-        }
-      });
-      
-      // Carousel Reveal
-      gsap.from(carouselRef.current, {
-        y: 60,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: carouselRef.current,
-          start: "top 80%",
-        }
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  useGSAPEffect(() => {
+    // Header Reveal
+    gsap.from(headerRef.current.children, {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: headerRef.current,
+        start: "top 85%",
+      }
+    });
+    
+    // Carousel Reveal
+    gsap.from(carouselRef.current, {
+      y: 60,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: carouselRef.current,
+        start: "top 80%",
+      }
+    });
+  }, sectionRef, []);
 
   return (
     <section 

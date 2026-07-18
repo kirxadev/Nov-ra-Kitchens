@@ -1,43 +1,39 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 export function CollectionHero({ collection }) {
   const heroRef = useRef(null);
   const textRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
-      // Background Parallax
-      gsap.to(heroRef.current, {
-        y: "15%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true
-        }
-      });
-
-      // Text Reveal
-      gsap.from(textRef.current.children, {
-        y: 40,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.2,
-        ease: "power3.out",
-        delay: 0.2
-      });
+  useGSAPEffect(() => {
+    // Background Parallax
+    gsap.to(heroRef.current, {
+      y: "15%",
+      ease: "none",
+      scrollTrigger: {
+        trigger: heroRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      }
     });
 
-    return () => ctx.revert();
-  }, []);
+    // Text Reveal
+    gsap.from(textRef.current.children, {
+      y: 40,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.2,
+      ease: "power3.out",
+      delay: 0.2
+    });
+  }, heroRef, []);
 
   return (
     <section className="relative w-full h-[70vh] sm:h-[85vh] flex items-end overflow-hidden bg-black">

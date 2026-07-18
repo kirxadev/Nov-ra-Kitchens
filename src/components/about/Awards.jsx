@@ -1,19 +1,18 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { aboutData } from "@/data/about";
 import { cn } from "@/lib/utils";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function Awards() {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
   const listRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
+  useGSAPEffect(() => {
       // Header Reveal
       gsap.from(headerRef.current.children, {
         y: 40,
@@ -39,10 +38,7 @@ export function Awards() {
           start: "top 75%",
         }
       });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+    }, sectionRef, []);
 
   return (
     <section 

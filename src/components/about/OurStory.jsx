@@ -1,11 +1,12 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import { aboutData } from "@/data/about";
 import { cn } from "@/lib/utils";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function OurStory() {
   const sectionRef = useRef(null);
@@ -13,9 +14,7 @@ export function OurStory() {
   const rightPanelRef = useRef(null);
   const indicatorRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
+  useGSAPEffect(() => {
       // Reveal entire section
       gsap.from(leftPanelRef.current, {
         opacity: 0,
@@ -74,10 +73,7 @@ export function OurStory() {
         });
       });
 
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+    }, sectionRef, []);
 
   return (
     <section 

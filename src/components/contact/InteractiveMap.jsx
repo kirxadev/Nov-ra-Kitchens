@@ -1,17 +1,16 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 export function InteractiveMap() {
   const mapRef = useRef(null);
   const pinRef = useRef(null);
   const pulseRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
+  useGSAPEffect(() => {
       // Reveal the map block
       gsap.from(mapRef.current, {
         y: 40, opacity: 0, duration: 1.5, ease: "power3.out",
@@ -29,9 +28,7 @@ export function InteractiveMap() {
         scale: 2.5, opacity: 0, duration: 2, repeat: -1, ease: "power1.out"
       });
       
-    }, mapRef);
-    return () => ctx.revert();
-  }, []);
+    }, mapRef, []);
 
   return (
     <section className="w-full bg-white py-24 sm:py-32">

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import gsap from "gsap";
+import { gsap } from "@/lib/gsap";
 
 export function GlobalPreloader() {
   const [isLoading, setIsLoading] = useState(true);

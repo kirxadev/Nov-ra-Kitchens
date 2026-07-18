@@ -1,11 +1,12 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
 import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 
 export function CollectionMaterials({ collection }) {
   const [activeMat, setActiveMat] = useState(0);
@@ -16,16 +17,12 @@ export function CollectionMaterials({ collection }) {
 
   const { materials } = collection;
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
+  useGSAPEffect(() => {
       gsap.from(contentRef.current.children, {
         y: 40, opacity: 0, duration: 1, stagger: 0.1, ease: "power3.out",
         scrollTrigger: { trigger: contentRef.current, start: "top 80%" }
       });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+    }, sectionRef, []);
 
   useEffect(() => {
     if (imageRef.current) {

@@ -1,17 +1,16 @@
 "use client";
 
-import { gsap, ScrollTrigger, registerGSAP } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
+import { useGSAPEffect } from "@/hooks/useGSAP";
 export function CaseStudyHero({ project }) {
   const sectionRef = useRef(null);
   const imageRef = useRef(null);
   const contentRef = useRef(null);
 
-  useEffect(() => {
-    registerGSAP();
-    let ctx = gsap.context(() => {
+  useGSAPEffect(() => {
       // Image Parallax
       gsap.to(imageRef.current, {
         yPercent: 30,
@@ -33,10 +32,7 @@ export function CaseStudyHero({ project }) {
         ease: "power3.out",
         delay: 0.2
       });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+    }, sectionRef, []);
 
   return (
     <section ref={sectionRef} className="relative w-full h-[85vh] min-h-[600px] overflow-hidden bg-black">
