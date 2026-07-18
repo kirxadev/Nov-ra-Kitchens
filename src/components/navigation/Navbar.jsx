@@ -62,7 +62,7 @@ export function Navbar() {
             )}
           >
             <span className="font-heading text-heading font-medium tracking-wide leading-none text-xl sm:text-2xl">
-              NOVA
+              NOVÈRA
             </span>
             <span className="font-sans text-primary text-[10px] sm:text-xs tracking-[0.2em] font-semibold uppercase mt-0.5">
               Kitchens
@@ -145,7 +145,7 @@ export function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="font-heading text-heading font-medium tracking-wide text-2xl">
-                NOVA
+                NOVÈRA
               </span>
               <span className="font-sans text-primary text-xs tracking-[0.2em] font-semibold uppercase mt-0.5">
                 Kitchens

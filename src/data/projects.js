@@ -15,7 +15,7 @@ export const projects = [
       challenge: "The primary challenge was balancing the rich, dark tones of natural walnut with the ambient light of the space to prevent it from feeling overly heavy, while seamlessly hiding all structural appliances.",
       solution: "We engineered custom floor-to-ceiling walnut cabinetry with integrated LED channel lighting and paired it with highly reflective white quartz surfaces to bounce natural light throughout the room.",
       testimonial: {
-        quote: "Nova Kitchens completely transformed how we interact with our home. The attention to detail and the quality of the walnut finish is beyond anything we expected.",
+        quote: "Novèra Kitchens completely transformed how we interact with our home. The attention to detail and the quality of the walnut finish is beyond anything we expected.",
         author: "A. Patel, Homeowner"
       }
     },

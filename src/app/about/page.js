@@ -7,8 +7,8 @@ import { Awards } from "@/components/about/Awards";
 import { CTASection } from "@/components/sections/cta/CTASection";
 
 export const metadata = {
-  title: "About Us | Nova Kitchens",
-  description: "Discover the philosophy, craftsmanship, and team behind Nova Kitchens.",
+  title: "About Us | Novèra Kitchens",
+  description: "Discover the philosophy, craftsmanship, and team behind Novèra Kitchens.",
 };
 
 export default function AboutPage() {

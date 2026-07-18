@@ -6,8 +6,8 @@ import { FAQSection } from "@/components/sections/faq/FAQSection";
 import { CTASection } from "@/components/sections/cta/CTASection";
 
 export const metadata = {
-  title: "Private Consultation | Nova Kitchens",
-  description: "Book a private design consultation at the Nova Kitchens flagship studio.",
+  title: "Private Consultation | Novèra Kitchens",
+  description: "Book a private design consultation at the Novèra Kitchens flagship studio.",
 };
 
 export default function ContactPage() {

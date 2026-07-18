@@ -109,7 +109,7 @@ export function DifferenceSection() {
             Craftsmanship Built Into Every Detail
           </h2>
           <p className="font-sans text-base sm:text-lg leading-relaxed text-[#5F6368] max-w-2xl">
-            Every Nova Kitchen is thoughtfully designed using premium materials, precision engineering and timeless craftsmanship to create spaces that elevate everyday living.
+            Every Novèra Kitchen is thoughtfully designed using premium materials, precision engineering and timeless craftsmanship to create spaces that elevate everyday living.
           </p>
         </div>
 

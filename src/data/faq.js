@@ -12,7 +12,7 @@ export const faqQuestions = [
   {
     id: 3,
     question: "Can I customize every cabinet and storage solution?",
-    answer: "Absolutely. Nova Kitchens are entirely bespoke. While we use advanced modular frameworks, every internal storage solution, shelving height, drawer dimension, and mechanical pull-out is tailored to your specific culinary habits and organizational needs."
+    answer: "Absolutely. Novèra Kitchens are entirely bespoke. While we use advanced modular frameworks, every internal storage solution, shelving height, drawer dimension, and mechanical pull-out is tailored to your specific culinary habits and organizational needs."
   },
   {
     id: 4,
@@ -27,7 +27,7 @@ export const faqQuestions = [
   {
     id: 6,
     question: "Is there a warranty on your products?",
-    answer: "Every Nova Kitchen includes an industry-leading 10-year warranty covering all cabinetry, mechanical hardware, and structural integrity. We stand by our craftsmanship and ensure your architectural investment is fully protected."
+    answer: "Every Novèra Kitchen includes an industry-leading 10-year warranty covering all cabinetry, mechanical hardware, and structural integrity. We stand by our craftsmanship and ensure your architectural investment is fully protected."
   },
   {
     id: 7,

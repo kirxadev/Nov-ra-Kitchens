@@ -97,7 +97,7 @@ export function ProcessSection() {
             From Vision To Reality
           </h2>
           <p className="font-sans text-base sm:text-lg leading-relaxed text-[#5F6368] max-w-2xl">
-            Every Nova Kitchen is thoughtfully planned, designed and crafted through a seamless process that combines creativity, precision engineering and premium craftsmanship.
+            Every Novèra Kitchen is thoughtfully planned, designed and crafted through a seamless process that combines creativity, precision engineering and premium craftsmanship.
           </p>
         </div>
 

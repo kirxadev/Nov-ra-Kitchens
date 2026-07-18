@@ -29,7 +29,7 @@ export const novaDifference = [
     id: 4,
     title: "Smart Storage Solutions",
     shortDesc: "Intelligent organizational flow",
-    expandedDesc: "Beyond aesthetics, a Nova Kitchen is a highly intelligent machine. We integrate advanced European hardware, heavy-duty pull-outs, and custom zoning to maximize every cubic inch of storage space.",
+    expandedDesc: "Beyond aesthetics, a Novèra Kitchen is a highly intelligent machine. We integrate advanced European hardware, heavy-duty pull-outs, and custom zoning to maximize every cubic inch of storage space.",
     icon: Maximize,
     image: "/images/difference/diff_storage_1784362863234.png"
   },

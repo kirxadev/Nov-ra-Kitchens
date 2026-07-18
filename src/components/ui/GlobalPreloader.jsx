@@ -82,7 +82,7 @@ export function GlobalPreloader() {
           ref={textRef} 
           className="font-heading text-3xl sm:text-5xl font-medium tracking-[0.2em] mb-6 text-white"
         >
-          NOVA KITCHENS
+          NOVÈRA KITCHENS
         </h2>
         <div className="w-24 sm:w-32 h-[1px] bg-white/20 relative">
           <div ref={lineRef} className="absolute inset-0 h-full bg-[#C46A3C]" />

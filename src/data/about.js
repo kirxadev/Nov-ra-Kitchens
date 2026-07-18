@@ -2,7 +2,7 @@ export const aboutData = {
   hero: {
     label: "Our Story",
     heading: "Crafting Timeless Architecture For Modern Living.",
-    description: "Founded on the belief that the kitchen is the architectural heart of the home, Nova Kitchens merges absolute precision with organic warmth to create spaces that endure."
+    description: "Founded on the belief that the kitchen is the architectural heart of the home, Novèra Kitchens merges absolute precision with organic warmth to create spaces that endure."
   },
   
   storyTimeline: [
@@ -27,7 +27,7 @@ export const aboutData = {
     {
       year: "2026",
       title: "Global Presence",
-      description: "Today, Nova Kitchens adorns luxury residences across the world, continuing to push the boundaries of spatial design and culinary architecture.",
+      description: "Today, Novèra Kitchens adorns luxury residences across the world, continuing to push the boundaries of spatial design and culinary architecture.",
       image: "/images/difference/diff_italian_1784362822206.png"
     }
   ],

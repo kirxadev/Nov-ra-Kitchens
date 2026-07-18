@@ -64,7 +64,7 @@ export function AboutHero() {
       >
         <Image
           src="/images/hero/kitchen_island.png" // Reusing our best ultra-wide hero image
-          alt="Nova Kitchens Architecture"
+          alt="Novèra Kitchens Architecture"
           fill
           priority
           className="object-cover opacity-60"

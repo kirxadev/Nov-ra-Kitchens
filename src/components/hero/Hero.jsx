@@ -219,7 +219,7 @@ export function Hero() {
       id="hero-slider"
       className="relative w-full h-[100vh] min-h-[700px] overflow-hidden bg-[#1F1F1F] group"
       aria-roledescription="carousel"
-      aria-label="Nova Kitchens Showcase"
+      aria-label="Novèra Kitchens Showcase"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={handleTouchStart}
@@ -227,7 +227,7 @@ export function Hero() {
       onTouchEnd={handleTouchEnd}
     >
       {/* SEO: Visually hidden h1 for screen readers and crawlers */}
-      <h1 className="sr-only">Nova Kitchens - Luxury Modular Kitchens & Wardrobes</h1>
+      <h1 className="sr-only">Novèra Kitchens - Luxury Modular Kitchens & Wardrobes</h1>
 
       {/* 1. Background Media Layer */}
       <div className="absolute inset-0 z-0">

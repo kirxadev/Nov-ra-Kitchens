@@ -14,10 +14,10 @@ export async function generateMetadata({ params }) {
   const collection = collectionsDetailed.find((c) => c.slug === slug);
   if (!collection) return { title: "Collection Not Found" };
   return {
-    title: `${collection.title} | Nova Kitchens`,
+    title: `${collection.title} | Novèra Kitchens`,
     description: collection.overview,
     openGraph: {
-      title: `${collection.title} | Nova Kitchens`,
+      title: `${collection.title} | Novèra Kitchens`,
       description: collection.overview,
       images: [collection.heroImage],
     },

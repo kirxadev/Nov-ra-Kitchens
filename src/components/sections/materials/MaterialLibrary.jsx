@@ -106,7 +106,7 @@ export function MaterialLibrary() {
             Crafted With The Finest Materials
           </h2>
           <p className="font-sans text-base sm:text-lg leading-relaxed text-[#EAE5DF] max-w-2xl">
-            Every Nova Kitchen is built using carefully selected materials that combine timeless beauty, durability and exceptional craftsmanship. Explore finishes designed to elevate modern living.
+            Every Novèra Kitchen is built using carefully selected materials that combine timeless beauty, durability and exceptional craftsmanship. Explore finishes designed to elevate modern living.
           </p>
         </div>
 

@@ -84,7 +84,7 @@ export function Footer() {
         <div ref={topRef} className="flex flex-col mb-20 sm:mb-24">
           <Link href="/" className="inline-block mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
             <span className="font-heading text-4xl font-medium tracking-tight text-heading">
-              NOVA.
+              NOVÈRA.
             </span>
           </Link>
           <p className="font-sans text-base sm:text-lg lg:text-xl text-[#5F6368] leading-relaxed max-w-[520px]">
@@ -195,7 +195,7 @@ export function Footer() {
               Design Inspiration Delivered Monthly
             </h4>
             <p className="font-sans text-sm text-[#5F6368] leading-relaxed mb-8">
-              Receive curated design inspiration, material trends and project stories from Nova Kitchens.
+              Receive curated design inspiration, material trends and project stories from Novèra Kitchens.
             </p>
             <form className="flex w-full relative" onSubmit={(e) => e.preventDefault()}>
               <input suppressHydrationWarning 
@@ -233,10 +233,10 @@ export function Footer() {
         {/* Bottom Bar */}
         <div ref={bottomRef} className="flex flex-col sm:flex-row items-center justify-between border-t border-[#EAE5DF] pt-8 gap-4 text-center sm:text-left">
           <span className="font-sans text-[10px] sm:text-xs text-[#5F6368]">
-            © 2026 Nova Kitchens. All Rights Reserved.
+            © 2026 Novèra Kitchens. All Rights Reserved.
           </span>
           <span className="font-sans text-[10px] sm:text-xs text-[#5F6368]">
-            Designed & Crafted by Nova Kitchens Studio
+            Designed & Crafted by Novèra Kitchens Studio
           </span>
           <div className="flex items-center space-x-4 sm:space-x-6">
             <Link href="/privacy-policy" className="font-sans text-[10px] sm:text-xs text-[#5F6368] transition-colors hover:text-heading">

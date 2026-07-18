@@ -14,10 +14,10 @@ export async function generateMetadata({ params }) {
   const project = projects.find((p) => p.slug === slug);
   if (!project) return { title: "Project Not Found" };
   return {
-    title: `${project.title} | Nova Kitchens Portfolio`,
+    title: `${project.title} | Novèra Kitchens Portfolio`,
     description: project.shortDescription,
     openGraph: {
-      title: `${project.title} | Nova Kitchens`,
+      title: `${project.title} | Novèra Kitchens`,
       description: project.shortDescription,
       images: [project.image],
     },

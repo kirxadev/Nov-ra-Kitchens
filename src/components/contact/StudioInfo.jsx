@@ -26,7 +26,7 @@ export function StudioInfo() {
             <span className="font-sans text-xs font-bold uppercase tracking-widest text-[#A8A39D]">Location</span>
           </div>
           <address className="not-italic font-sans text-base text-heading leading-[1.8] font-medium">
-            Nova Kitchens Flagship<br/>
+            Novèra Kitchens Flagship<br/>
             42 Design District Blvd<br/>
             Milan, Italy 20121
           </address>

@@ -14,21 +14,21 @@ const geistMono = Geist_Mono({
 export const metadata = {
   metadataBase: new URL('http://localhost:3000'), // Replace with prod URL
   title: {
-    default: "Nova Kitchens | Premium Architectural Kitchens",
-    template: "%s | Nova Kitchens",
+    default: "Novèra Kitchens | Premium Architectural Kitchens",
+    template: "%s | Novèra Kitchens",
   },
   description: "Bespoke architectural kitchens and premium storage solutions engineered for luxury living.",
   openGraph: {
-    title: "Nova Kitchens",
+    title: "Novèra Kitchens",
     description: "Bespoke architectural kitchens engineered for luxury living.",
     url: "http://localhost:3000",
-    siteName: "Nova Kitchens",
+    siteName: "Novèra Kitchens",
     images: [
       {
         url: "/images/hero/hero-dark.jpg",
         width: 1200,
         height: 630,
-        alt: "Nova Kitchens Luxury Design",
+        alt: "Novèra Kitchens Luxury Design",
       },
     ],
     locale: "en_US",
@@ -36,7 +36,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nova Kitchens",
+    title: "Novèra Kitchens",
     description: "Bespoke architectural kitchens engineered for luxury living.",
     images: ["/images/hero/hero-dark.jpg"],
   },
